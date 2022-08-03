@@ -1,0 +1,77 @@
+/*variables*/
+:root {
+  --font-title: "Sansita", sans-serif;
+  --font-main: "Open Sans", sans-serif;
+  /*colors*/
+  --light-blue: #c9fbff;
+  --med-blue: #85bdbf;
+  --dark-blue: #57737a;
+  --light-grey: #434b4b;
+  --med-grey: #303939;
+  --dark-grey: #1b2525;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+div,
+p,
+a {
+  font-family: var(--font-main);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+  border-radius: 0 0 10px 10px;
+  background: #ffffff;
+  box-shadow: -5px 5px 8px #f2f2f2, 5px -5px 8px #ffffff;
+  margin: 0rem 0.8rem 0 0.8rem;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  color: #434b4b;
+  padding: 0 0.8rem 0 0.8rem;
+  user-select: none;
+}
+
+.logo-header h1 {
+  font-style: italic;
+}
+
+.site-logo {
+  height: 1.5rem;
+  margin-left: 0.75rem;
+  transform: rotate(-0.04turn);
+}
+
+.site-logo path {
+  fill: #434b4b;
+}
+
+.account-button {
+  text-decoration: none;
+  color: #434b4b;
+}
