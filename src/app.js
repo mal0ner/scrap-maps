@@ -1,3 +1,4 @@
+//jQuery selector to grab all our paths in an array
 const paths = $("#world-map path");
 //country names object, coincides with
 //classnames given to the individual
@@ -232,10 +233,15 @@ const names = {
   MZ: "Mozambique",
 };
 
+//Loop over our country svg paths and set event listeners for them
 for (let i = 0; i < paths.length; i++) {
   const country = paths[i];
   country.addEventListener("mouseenter", () => {
     //from https://stackoverflow.com/questions/11373741/detecting-by-how-much-user-has-scrolled
+    //horizontal scrolling can cause issues with positioning
+    //absolute elements (tooltip in this case) so we need to grab
+    //the amount we have scrolled by in order to offset the
+    //tooltip
     let scrollLeft =
       window.pageXOffset !== undefined
         ? window.pageXOffset
@@ -244,18 +250,26 @@ for (let i = 0; i < paths.length; i++) {
             document.body.parentNode ||
             document.body
           ).scrollLeft;
+    //The 'bounds' is an object with
+    //coordinates of the smallest possible rectangle that
+    //can fit around our country svg path
     const bounds = country.getBoundingClientRect();
+    //the tooltip is the hovering element that shows which
+    //country the user has selected currently
     const tooltip = document.getElementById("tooltip");
     //get corresponding name
     const code = country.className.baseVal.slice(-2);
     tooltip.innerHTML = names[code];
-    //set our width, height and position
+    //set our tooltip's position to the middle
+    // of the country's box using the boundary object
     tooltip.style.visibility = "visible";
     tooltip.style.top = `${bounds.y + bounds.height / 2 - 5}px`;
     tooltip.style.left = `${bounds.x + bounds.width / 2 - 5 + scrollLeft}px`;
   });
   country.addEventListener("mouseleave", () => {
     const tooltip = document.getElementById("tooltip");
+    //make the hovering tooltip disappear when no country is being
+    //hovered
     tooltip.style.visibility = "hidden";
   });
 }
